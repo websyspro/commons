@@ -170,13 +170,26 @@ class Collection
   }
 
   /**
+   * Returns the string representation of the current instance.
+   *
+   * This method delegates the conversion to the internal `join()` method,
+   * which is responsible for generating the final string output.
+   *
+   * @return string The resulting string representation.
+   */
+  public function toString(
+  ): string {
+    return $this->join();
+  } 
+
+  /**
    * Joins items using a comma and space.
    *
    * @return string
    */  
   public function joinWithComma(
   ): string {
-    return $this->Join( ", " );
+    return $this->join( ", " );
   }
 
   /**
