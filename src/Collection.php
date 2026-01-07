@@ -65,7 +65,7 @@ class Collection
       return new Collection(
         Util::mapper(
           $this->items, fn(mixed $item) => (
-              Util::hydrateObject( $item, $fn )
+              Util::hydrate( $item, $fn )
             ) 
           )
       );

@@ -1,5 +1,11 @@
 <?php
 
+namespace Websyspro\Core;
+
+use ReflectionNamedType;
+use ReflectionClass;
+
+
 /**
  * Class Util
  *
@@ -11,14 +17,6 @@
  *
  * @package Websyspro\Core
  */
-
-namespace Websyspro\Core;
-
-use ReflectionClass;
-use ReflectionFunction;
-use ReflectionNamedType;
-use stdClass;
-
 class Util
 {
   /**
