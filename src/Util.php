@@ -412,11 +412,13 @@ class Util
   public static function strToArray(
     string $valueStr  
   ): Collection {
-    return new Collection(
+    $collection = new Collection(
       explode(",", preg_replace(
         "#(^\[)|(\]$)#", "", $valueStr
       ))
-    )->mapper(fn(string $str) => trim($str));
+    );
+
+    return $collection->mapper(fn(string $str) => trim($str));
   }  
 
   /**
