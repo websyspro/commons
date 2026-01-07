@@ -592,7 +592,7 @@ class Util
     string $pattern,
     string $subject
   ): bool {
-    return (bool)preg_match(
+    return preg_match(
       $pattern, 
       $subject
     ) === 1;
