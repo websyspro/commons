@@ -579,6 +579,26 @@ class Util
   }
 
   /**
+   * Checks whether a regular expression pattern matches a given subject string.
+   *
+   * This method wraps PHP's `preg_match()` function and returns a boolean
+   * indicating if at least one match was found.
+   *
+   * @param string $pattern The regular expression pattern to evaluate.
+   * @param string $subject The string to test against the pattern.
+   * @return bool Returns true if the pattern matches the subject, false otherwise.
+   */
+  public static function match(
+    string $pattern,
+    string $subject
+  ): bool {
+    return (bool)preg_match(
+      $pattern, 
+      $subject
+    ) === 1;
+  }
+
+  /**
    * Generates a UUID (GUID) version 4.
    *
    * UUID v4 is based on random bytes, with specific bits
