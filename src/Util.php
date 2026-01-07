@@ -301,7 +301,23 @@ class Util
     }
 
     return -1;   
-  }  
+  }
+
+  /**
+   * Removes whitespace (or other predefined characters) from the beginning
+   * and end of a string.
+   *
+   * This method is a simple wrapper around PHP's native `trim()` function,
+   * providing a consistent static utility interface within the project.
+   *
+   * @param string $value The input string to be trimmed.
+   * @return string The trimmed string.
+   */
+  public static function trim(
+    string $value
+  ): string {
+    return trim($value);
+  }
 
   /**
    * Joins array elements into a single string using a given separator.
