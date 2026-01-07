@@ -1,6 +1,6 @@
 <?php
 
-namespace Websyspro\Core;
+namespace Websyspro\Commons;
 
 use ReflectionNamedType;
 use ReflectionClass;
