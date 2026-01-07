@@ -1,14 +1,13 @@
 {
   "name": "websyspro/commons",
-  "description": "Common utilities library for PHP applications",
+  "description": "Generic utility helpers for PHP components (arrays, files, strings, types, and identifiers).",
   "minimum-stability": "dev",
   "prefer-stable": true,
   "license": "MIT",
   "type": "library",
   "autoload": {
     "psr-4": {
-      "Websyspro\\SqlFromClass\\": "src/",
-      "Websyspro\\Test\\": "test/"
+      "Websyspro\\Commons\\": "src/"
     }   
   },
   "scripts": {
