@@ -454,7 +454,7 @@ class Util
    *
    * @return array A flattened associative array with dot-notated keys.
    */  
-  public static function ParseBodyStaticsUnion(
+  public static function parseBodyStaticsUnion(
     array $array,
     string $prefix = ""
   ): array {
@@ -467,7 +467,7 @@ class Util
         if (is_array($value) && array_keys($value) === range(0, count($value) - 1)) {
           $result[$newKey] = json_encode($value);
         } else {
-          $flattened = Util::ParseBodyStaticsUnion((array)$value, $newKey);
+          $flattened = Util::parseBodyStaticsUnion((array)$value, $newKey);
           foreach ($flattened as $fKey => $fValue) {
               $result[$fKey] = $fValue;
           }
@@ -496,18 +496,6 @@ class Util
     return \sprintf( $format, ...$args);
   }
 
-  /**
-   * Returns the size of an array or object.
-   *
-   * @param array|object $array
-   * @return int
-   */ 
-  public static function size(
-    array|object $array
-  ): int {
-    return \sizeof($array);
-  }
-  
   /**
    * Returns the number of elements in an array or object.
    *
@@ -538,7 +526,7 @@ class Util
   public static function exist(
     array|object $array
   ): bool {
-    return Util::size($array) !== 0;
+    return Util::sizeArray($array) !== 0;
   }
   
   /**
@@ -689,7 +677,24 @@ class Util
     return \call_user_func_array(
       [ $object, $method ], $args
     );
-  }  
+  }
+  
+  public static function classToName(
+    string $class
+  ): string {
+    [ $classArray ] = Util::slice(
+      preg_split(
+        "#\\\#",
+        $class, 
+        -1,
+        PREG_SPLIT_NO_EMPTY 
+      ), -1
+    );
+
+    return Util::join( "", Util::slice( preg_split( 
+      "#(?=[A-Z])#", $classArray, -1, PREG_SPLIT_NO_EMPTY
+    ), 0, -1 ));
+  }
 
   /**
    * Returns the type of a given value as a string.
