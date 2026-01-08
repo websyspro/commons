@@ -679,6 +679,21 @@ class Util
     );
   }
   
+  /**
+   * Converts a fully qualified class name into a base name without the "Entity" suffix.
+   *
+   * The method:
+   * - Extracts the class name from its namespace.
+   * - Splits the class name by uppercase letters (CamelCase).
+   * - Removes the last segment (commonly "Entity").
+   * - Joins the remaining parts back into a single string.
+   *
+   * Example:
+   *   App\Domain\UserAccessEntity → UserAccess
+   *
+   * @param string $class Fully qualified class name.
+   * @return string Class base name without the last CamelCase segment.
+   */  
   public static function classToName(
     string $class
   ): string {
