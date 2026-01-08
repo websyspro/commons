@@ -696,7 +696,7 @@ class Util
    */  
   public static function classToName(
     string $class
-  ): string {
+  ): string|null {
     [ $classArray ] = Util::slice(
       preg_split(
         "#\\\#",
@@ -706,9 +706,22 @@ class Util
       ), -1
     );
 
-    return Util::join( "", Util::slice( preg_split( 
-      "#(?=[A-Z])#", $classArray, -1, PREG_SPLIT_NO_EMPTY
-    ), 0, -1 ));
+    $classNameArray = new Collection(
+      preg_split( 
+        "#(?=[A-Z])#", 
+        $classArray, 
+        -1, 
+        PREG_SPLIT_NO_EMPTY
+      )
+    );
+
+    if( $classNameArray->exist() === false ){
+      return null;
+    }
+
+    return $classNameArray->count() > 1 
+      ? $classNameArray->slice( 0, -1 )->joinNotSpace() 
+      : $classNameArray->first();
   }
 
   /**
