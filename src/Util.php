@@ -223,6 +223,26 @@ class Util
     }
   }
 
+/**
+ * Executes a callback function in a loop-like control.
+ *
+ * The provided callable is executed once, and if it returns `false`,
+ * the script execution is immediately terminated using `exit()`.
+ *
+ * This method can be used as a simple control mechanism to stop
+ * the application flow based on a dynamic condition.
+ *
+ * @param callable $fn Callback function to be executed.
+ *                    If it returns false, the execution stops.
+ */ 
+  public static function loop(
+    callable $fn
+  ): void {
+    if($fn() === false){
+      exit();
+    }
+  }  
+
   /**
    * Merges multiple arrays into one.
    *
