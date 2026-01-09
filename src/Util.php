@@ -238,8 +238,10 @@ class Util
   public static function loop(
     callable $fn
   ): void {
-    if($fn() === false){
-      exit();
+    while(true){
+      if($fn() === false){
+        exit();
+      }
     }
   }  
 
