@@ -12,7 +12,7 @@ class File
 
   public static function get(
     string $file
-  ): bool {
+  ): string {
     return file_get_contents( $file);
   }
 }
