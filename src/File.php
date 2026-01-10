@@ -9,4 +9,10 @@ class File
   ): bool {
     return file_exists( $file);
   }
+
+  public static function get(
+    string $file
+  ): bool {
+    return file_get_contents( $file);
+  }
 }
