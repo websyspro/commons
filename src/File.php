@@ -37,7 +37,7 @@ class File
    * @param string $filname The file path to check
    * @return string|float The modification time as Unix timestamp
    */
-  public static function filemtime(
+  public static function timestamp(
     string $filname
   ): string|float {
     /* Return the last modification time of the file as Unix timestamp */
