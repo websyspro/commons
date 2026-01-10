@@ -9,6 +9,21 @@ namespace Websyspro\Commons;
 class File
 {
   /**
+   * Get the full path from root directory
+   * @param string $filename The filename to append to root path
+   * @return string The complete file path from root directory
+   */
+  public static function rootPath(
+    string $filename
+  ): string {
+    /* Combine current working directory with filename using directory separator */
+    return implode( 
+      DIRECTORY_SEPARATOR,
+      [ getcwd(), $filename ]
+    ); 
+  }
+
+  /**
    * Check if a file exists
    * @param string $file The file path to check
    * @return bool True if file exists, false otherwise
