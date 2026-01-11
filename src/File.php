@@ -41,11 +41,25 @@ class File
    * @return string The file contents as a string
    */
   public static function get(
-    string $file
+    string $filename
   ): string {
     /* Read and return the entire contents of the file */
-    return file_get_contents( $file);
+    return file_get_contents( $filename);
   }
+
+  /**
+   * Get the contents of a file
+   * @param string $file The file path to read
+   * @return string The file contents as a string
+   */
+  public static function lines(
+    string $filename
+  ): Collection {
+    /* Read and return the entire contents of the file */
+    return new Collection(
+      file( $filename )
+    );
+  }  
 
   /**
    * Get the last modification time of a file
