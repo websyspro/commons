@@ -38,6 +38,12 @@ class Util
     return \is_array( $value );
   }
 
+  public static function isString(
+    mixed $value
+  ): bool {
+    return \is_string( $value );
+  }  
+
   /**
    * Returns the number of elements in an array.
    *

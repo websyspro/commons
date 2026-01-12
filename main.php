@@ -27,16 +27,18 @@ class User {
   public string $name;
 }
 
-// $callA = Call::bodyToStr( 
-//   fn( User $user ) => $user->Id === 1 
-//                                && $user->name === "John Martins"
-// );
-
-$callB = Call::bodyToStr( 
-  function( User $user ) {
-    return $user->Id === 1 
-                               && $user->name === "John Martins";
-  }
+$callA = Call::bodyToStr( 
+  fn( User $user ) => (
+    $user->Id === 1 
+                               && $user->name === "John Martins" && ( $user->name === "Admin" && 1 === 1 )
+                               )
 );
 
-// print_r($callA);
+// $callB = Call::bodyToStr( 
+//   function( User $user ) {
+//     return $user->Id === 1 
+//                                && $user->name === "John Martins";
+//   }
+// );
+
+print_r($callA);
