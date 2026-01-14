@@ -38,9 +38,23 @@ class Util
     return \is_array( $value );
   }
 
+  /**
+   * Checks if a given value is a string.
+   *
+   * This is a simple wrapper around PHP's built-in is_string() function.
+   * It returns true if the value is a string, false otherwise.
+   *
+   * Example usage:
+   *   isString("hello"); // returns true
+   *   isString(123);     // returns false
+   *
+   * @param mixed $value The value to check.
+   * @return bool True if the value is a string, false otherwise.
+   */
   public static function isString(
     mixed $value
   ): bool {
+    // Check if value is a string type
     return \is_string( $value );
   }  
 
@@ -59,6 +73,25 @@ class Util
     array $array
   ): int {
     return \sizeof($array);
+  }
+
+  /**
+   * Builds a file system path from an array of path segments.
+   *
+   * Joins the provided path segments using the system's directory separator
+   * (e.g., '/' on Unix/Linux or '\\' on Windows).
+   *
+   * Example usage:
+   *   path(['var', 'www', 'html']); // returns "var/www/html" on Unix
+   *
+   * @param array $paths Array of path segments to join.
+   * @return string The complete file system path.
+   */
+  public static function path(
+    array $paths
+  ): string {
+    // Join path segments with the system directory separator
+    return Util::join( DIRECTORY_SEPARATOR, $paths );
   }
 
   /**
@@ -137,13 +170,17 @@ class Util
     array|object $array,
     callable $fn
   ): array|object {
+    // Handle array transformation
     if(is_array($array)){
       foreach($array as $key => $val){
+        // Apply callback to each value and update in place
         $array[$key] = $fn($val, $key);
       }
     } else
+    // Handle object transformation
     if(is_object($array)){
       foreach($array as $key => $val){
+        // Apply callback to each property and update in place
         $array->{$key} = $fn($val, $key);
       }      
     }
@@ -167,9 +204,11 @@ class Util
     array $arrayFromArry = []
   ): array {
     foreach($array as $key => $val){
+      // For numeric keys, append to result array
       if(is_numeric($key)){
         $fn($val, $key) ? $arrayFromArry[] = $val : [];
       } else {
+        // For associative keys, preserve the key in result
         $fn($val, $key) ? $arrayFromArry[$key] = $val : [];
       }
     }
@@ -190,6 +229,7 @@ class Util
     array $array,
     callable $fn
   ): mixed {
+    // Use where to filter and extract first match
     [ $find ] = Util::where(
       $array, $fn
     );
@@ -216,13 +256,24 @@ class Util
 
   /**
    * Repeats execution N times.
-   * Returning false from the callback stops the loop.
+   *
+   * Executes the provided callback function a specified number of times.
+   * If the callback returns false at any point, the loop is terminated early.
+   *
+   * Example usage:
+   *   repeat(5, fn() => print("Hello\n")); // prints "Hello" 5 times
+   *
+   * @param int $times Number of times to execute the callback.
+   * @param callable $fn Callback function to execute. Return false to stop.
+   * @return void
    */  
   public static function repeat(
     int $times,
     callable $fn
   ): void {
+    // Execute callback N times
     for ($i = 0; $i < $times; $i++) {
+      // Break early if callback returns false
       if($fn() === false){
         break;
       }
@@ -244,7 +295,9 @@ class Util
   public static function loop(
     callable $fn
   ): void {
+    // Infinite loop until callback returns false
     while(true){
+      // Exit application if callback returns false
       if($fn() === false){
         exit();
       }
@@ -322,12 +375,15 @@ class Util
     array|object $arr,
     callable $fn
   ): int {
+    // Iterate through array or object
     foreach($arr as $key => $val){
+      // Return key when callback condition is met
       if($fn($val, $key) === true){
         return $key;
       }
     }
 
+    // Return -1 if no match found
     return -1;   
   }
 
@@ -379,13 +435,16 @@ class Util
     array $arrayFirst,
     array $arraySecond
   ): bool {
+    // Quick size check for performance
     if(sizeof($arrayFirst) !== sizeof($arraySecond)){
       return false;
     }
 
+    // Sort both arrays to enable order-insensitive comparison
     sort($arrayFirst);
     sort($arraySecond);
 
+    // Compare sorted values
     return array_values($arrayFirst) 
        === array_values($arraySecond);
   }  
@@ -551,21 +610,43 @@ class Util
    * @param array|object $array
    * @return bool
    */ 
+  /**
+   * Checks whether an array or object has at least one element.
+   *
+   * Returns true if the array or object contains one or more elements,
+   * false if it is empty.
+   *
+   * Example usage:
+   *   exist([1, 2, 3]); // returns true
+   *   exist([]);        // returns false
+   *
+   * @param array|object $array The array or object to check.
+   * @return bool True if not empty, false otherwise.
+   */
   public static function exist(
     array|object $array
   ): bool {
+    // Check if size is greater than zero
     return Util::sizeArray($array) !== 0;
   }
   
   /**
    * Checks whether a value is null.
    *
-   * @param mixed $value
-   * @return bool
+   * Simple utility to check for null values with strict comparison.
+   *
+   * Example usage:
+   *   isNull(null);  // returns true
+   *   isNull("");    // returns false
+   *   isNull(0);     // returns false
+   *
+   * @param mixed $value The value to check.
+   * @return bool True if the value is null, false otherwise.
    */  
   public static function isNull(
     mixed $value
   ): bool {
+    // Strict null comparison
     return $value === null;
   }   
   
@@ -575,22 +656,30 @@ class Util
    * If a key is provided, checks array key existence.
    * Otherwise, checks if the value itself exists.
    *
-   * @param mixed $value
-   * @param mixed $key
-   * @return bool
+   * Example usage:
+   *   existVar(['name' => 'John'], 'name'); // returns true
+   *   existVar($obj, 'property');           // returns true if property exists
+   *
+   * @param mixed $value The array, object, or value to check.
+   * @param mixed $key Optional key to check within array or object.
+   * @return bool True if the variable or key exists, false otherwise.
    */  
   public static function existVar(
     mixed $value,
     mixed $key = null
   ): bool {
+    // Check for key existence in array or object
     if( Util::isNull($key) === false ){
       if( Util::isArray($value)){
+        // Check array key
         return isset($value[ $key ]);
       } else if( Util::isObject($value)){
+        // Check object property
         return isset($value->{ $key });
       }
     }
 
+    // Check if value itself is set
     return isset($value);
   }
 
@@ -697,11 +786,32 @@ class Util
     );
   }
 
+  /**
+   * Executes a method on an object instance with the given arguments.
+   *
+   * This method is a wrapper around PHP's call_user_func_array(),
+   * allowing dynamic method invocation on object instances.
+   *
+   * Commonly used for:
+   *  - Dynamic controller method calls
+   *  - Middleware execution
+   *  - Event handler invocation
+   *
+   * Example usage:
+   *   callUserClassFN($controller, 'handleRequest', [$request]);
+   *
+   * @param object $object The object instance on which to call the method.
+   * @param string $method The name of the method to execute.
+   * @param array $args Optional array of arguments to pass to the method.
+   *
+   * @return mixed The return value of the executed method.
+   */
   public static function callUserClassFN(
     object $object, 
     string $method,
     array $args = []
   ): mixed {
+    // Call method on object with arguments
     return \call_user_func_array(
       [ $object, $method ], $args
     );
