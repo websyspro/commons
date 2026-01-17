@@ -41,6 +41,18 @@ class File
   }
 
   /**
+   * Get the file size in bytes
+   * @param string $file The file path to get size from
+   * @return int The file size in bytes
+   */
+  public static function size(
+    string $file
+  ): int {
+    /* Return the file size in bytes */
+    return filesize($file);
+  }  
+
+  /**
    * Check if a file exists
    * @param string $file The file path to check
    * @return bool True if file exists, false otherwise
@@ -61,7 +73,7 @@ class File
     string $filename
   ): string {
     /* Read and return the entire contents of the file */
-    return file_get_contents( $filename);
+    return file_get_contents( $filename );
   }
 
   /**
