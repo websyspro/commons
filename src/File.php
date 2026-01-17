@@ -24,6 +24,23 @@ class File
   }
 
   /**
+   * Get the file extension in lowercase
+   * @param string $file The file path to extract extension from
+   * @return string The file extension in lowercase
+   */
+  public static function ext(
+    string $file
+  ): string {
+    /* Extract and return the file extension in lowercase */
+    return strtolower(
+      pathinfo(
+        $file, 
+        PATHINFO_EXTENSION
+      )
+    );
+  }
+
+  /**
    * Check if a file exists
    * @param string $file The file path to check
    * @return bool True if file exists, false otherwise
