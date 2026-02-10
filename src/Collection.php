@@ -152,8 +152,44 @@ class Collection
   public function chunk(
     int $length
   ): Collection {
-    $this->items = Util::chunk($this->items, $length);
-    return $this;
+    return new Collection(
+      Util::chunk(
+        $this->items,
+        $length
+      )
+    );
+  }
+
+  function removerDuplicados(
+    string $field
+  ): Collection {
+    $unicos = [];
+    $vistos = [];
+
+    foreach ($this->items as $item) {
+      if (is_object($item)) {
+        if (!property_exists($item, $field)) {
+          continue;
+        }
+
+        $valor = $item->{$field};
+      } else {
+        if (!array_key_exists($field, $item)) {
+          continue;
+        }
+        
+        $valor = $item[$field];
+      }
+
+      if (!isset($vistos[$valor])) {
+        $vistos[$valor] = true;
+        $unicos[] = $item;
+      }
+    }
+
+    return new Collection(
+      $unicos
+    );
   }  
 
   /**
