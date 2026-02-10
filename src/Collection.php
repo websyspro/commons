@@ -160,7 +160,7 @@ class Collection
     );
   }
 
-  function removerDuplicados(
+  function removeDuplicates(
     string $field
   ): Collection {
     $unicos = [];
