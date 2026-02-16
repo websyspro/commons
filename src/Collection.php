@@ -17,7 +17,7 @@ class Collection
    * @param array $items Initial collection items
    */  
   public function __construct(
-    public array $items = []
+    public Collection|array $items = []
   ){}
 
   /**
