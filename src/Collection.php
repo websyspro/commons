@@ -303,12 +303,18 @@ class Collection
    * @return Collection Single-item collection
    */  
   public function eq(
-    int $eq
+    int|string $eq
   ): Collection {
+    if( is_string( $eq )){
+      return new Collection(
+        $this->items[ $eq ]
+      );
+    }
+
     return new Collection(
       Util::slice(
         $this->items,
-        $eq, 
+        $eq,
         1
       )
     );
