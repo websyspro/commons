@@ -388,6 +388,33 @@ class Util
   }
 
   /**
+   * Extracts specific keys from an array or object.
+   *
+   * Filters the input array/object and returns only the key-value pairs
+   * where the key exists in the provided items list.
+   *
+   * @param array|object $array The source array or object to extract from
+   * @param array $items List of keys to extract
+   * @param array $arrayFromArry Accumulator array for results
+   *
+   * @return array Filtered array containing only the specified keys
+   */
+  public static function gets(
+    array|object $array,
+    array $items,
+    array $arrayFromArry = []
+  ): array {
+    /* Iterate through array and collect matching keys */
+    foreach( $array as $key => $val){
+      if( in_array( $key, $items )){
+        $arrayFromArry[$key] = $val;
+      }
+    }
+
+    return $arrayFromArry;
+  }
+
+  /**
    * Removes whitespace (or other predefined characters) from the beginning
    * and end of a string.
    *
