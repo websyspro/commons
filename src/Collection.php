@@ -151,7 +151,23 @@ class Collection
     return new Collection(
       Util::gets( $this->items, $items )
     );
-  }  
+  } 
+  
+  /**
+   * Gets an item by index or key.
+   *
+   * @param array $items Index or key to retrieve
+   *
+   * @return Collection Collection containing the item
+   */
+  public function notGets(
+    array $items
+  ): Collection {
+    /* Return item by string key or numeric index */
+    return new Collection(
+      Util::notGets( $this->items, $items )
+    );
+  }   
 
   /**
    * Reduces the collection to a single value.
