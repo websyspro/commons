@@ -110,6 +110,33 @@ class Collection
     );
   }
 
+ 
+  /**
+   * Gets an item by index or key.
+   *
+   * @param int|string $eq Index or key to retrieve
+   *
+   * @return Collection Collection containing the item
+   */
+  public function get(
+    int|string $eq
+  ): Collection {
+    /* Return item by string key or numeric index */
+    if( is_string( $eq )){
+      return new Collection(
+        $this->items[ $eq ]
+      );
+    }
+
+    return new Collection(
+      Util::slice(
+        $this->items,
+        $eq,
+        1
+      )
+    );
+  }  
+
   /**
    * Reduces the collection to a single value.
    *
@@ -160,12 +187,20 @@ class Collection
     );
   }
 
+  /**
+   * Removes duplicate items based on a specific field.
+   *
+   * @param string $field Field name to check for duplicates
+   *
+   * @return Collection Collection without duplicates
+   */
   function removeDuplicates(
     string $field
   ): Collection {
     $unicos = [];
     $vistos = [];
 
+    /* Iterate through items and track unique field values */
     foreach ($this->items as $item) {
       if (is_object($item)) {
         if (!property_exists($item, $field)) {
@@ -181,6 +216,7 @@ class Collection
         $valor = $item[$field];
       }
 
+      /* Add item only if field value hasn't been seen before */
       if (!isset($vistos[$valor])) {
         $vistos[$valor] = true;
         $unicos[] = $item;
@@ -340,9 +376,17 @@ class Collection
     return end( $this->items );
   } 
 
+  /**
+   * Finds the index of the first item matching the condition.
+   *
+   * @param callable $fn Predicate function
+   *
+   * @return int Index of the matched item or -1 if not found
+   */
   public function indexOf(
     callable $fn
   ): int {
+    /* Return the index of the first matching item */
     return Util::indexOf(
       $this->items, $fn
     );
