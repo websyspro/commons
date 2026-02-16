@@ -114,24 +114,24 @@ class Collection
   /**
    * Gets an item by index or key.
    *
-   * @param int|string $eq Index or key to retrieve
+   * @param int|string $item Index or key to retrieve
    *
    * @return Collection Collection containing the item
    */
   public function get(
-    int|string $eq
+    int|string $item
   ): Collection {
     /* Return item by string key or numeric index */
-    if( is_string( $eq )){
+    if( is_string( $item )){
       return new Collection(
-        $this->items[ $eq ]
+        $this->items[ $item ]
       );
     }
 
     return new Collection(
       Util::slice(
         $this->items,
-        $eq,
+        $item,
         1
       )
     );
