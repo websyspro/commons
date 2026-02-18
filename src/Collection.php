@@ -121,7 +121,7 @@ class Collection
   public function get(
     int|string $item
   ): mixed {
-    return $this->items[ $item ];
+    return $this->items[ $item ] ?? null;
   }
   
   /**
