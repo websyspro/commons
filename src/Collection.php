@@ -205,6 +205,24 @@ class Collection
     );
   }
 
+  public function values(
+  ): Collection {
+    return new Collection(
+      array_values(
+        $this->items
+      )
+    );
+  }
+
+  public function keys(
+  ): Collection {
+    return new Collection(
+      array_keys(
+        $this->items
+      )
+    );
+  }  
+
   /**
    * Removes duplicate items based on a specific field.
    *
