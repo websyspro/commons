@@ -120,21 +120,8 @@ class Collection
    */
   public function get(
     int|string $item
-  ): Collection {
-    /* Return item by string key or numeric index */
-    if( is_string( $item )){
-      return new Collection(
-        $this->items[ $item ]
-      );
-    }
-
-    return new Collection(
-      Util::slice(
-        $this->items,
-        $item,
-        1
-      )
-    );
+  ): mixed {
+    return $this->items[ $item ];
   }
   
   /**
