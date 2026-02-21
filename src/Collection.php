@@ -28,8 +28,14 @@ class Collection
    * @return Collection Fluent instance
    */  
   public function add(
-    mixed $item
+    mixed $item, 
+    int|string|null $key = null
   ): Collection {
+    if( $key !== null ){
+      $this->items[ $key ] = $item;
+      return $this;
+    } 
+
     $this->items[] = $item;
     return $this;
   }
