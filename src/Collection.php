@@ -28,8 +28,14 @@ class Collection
    * @return Collection Fluent instance
    */  
   public function add(
-    mixed $item
+    mixed $item, 
+    int|string|null $key = null
   ): Collection {
+    if( $key !== null ){
+      $this->items[ $key ] = $item;
+      return $this;
+    } 
+
     $this->items[] = $item;
     return $this;
   }
@@ -120,21 +126,8 @@ class Collection
    */
   public function get(
     int|string $item
-  ): Collection {
-    /* Return item by string key or numeric index */
-    if( is_string( $item )){
-      return new Collection(
-        $this->items[ $item ]
-      );
-    }
-
-    return new Collection(
-      Util::slice(
-        $this->items,
-        $item,
-        1
-      )
-    );
+  ): mixed {
+    return $this->items[ $item ] ?? null;
   }
   
   /**
