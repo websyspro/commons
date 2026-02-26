@@ -861,7 +861,7 @@ class Util
    * @return mixed The return value of the executed method.
    */
   public static function callUserClassFN(
-    object $object, 
+    object|string $object, 
     string $method,
     array $args = []
   ): mixed {

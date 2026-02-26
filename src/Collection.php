@@ -221,7 +221,7 @@ class Collection
         $this->items
       )
     );
-  }  
+  } 
 
   /**
    * Removes duplicate items based on a specific field.
