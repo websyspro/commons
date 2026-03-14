@@ -488,10 +488,8 @@ class Collection
     Collection|array $replacement
   ): Collection {
     array_splice( $this->items, $offset, 
-      $replacement instanceof Collection 
-        ? $replacement->count() : Util::sizeArray( $replacement ), 
-      $replacement instanceof Collection 
-        ? $replacement->all() : $replacement 
+      $replacement instanceof Collection ? $replacement->count() : Util::sizeArray( $replacement ), 
+      $replacement instanceof Collection ? $replacement->all() : $replacement 
     );
     
     return $this;
