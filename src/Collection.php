@@ -440,4 +440,20 @@ class Collection
   public function all(): array {
     return $this->items;
   }
+
+  /**
+   * Sets a value at the specified index in the collection.
+   *
+   * @param int   $index Index to set
+   * @param mixed $value Value to assign
+   *
+   * @return Collection Fluent instance
+   */
+  public function setValue(
+    int $index,
+    mixed $value
+  ): Collection {
+    $this->items[ $index ] = $value;
+    return $this;
+  }
 }
