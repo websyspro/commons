@@ -456,4 +456,22 @@ class Collection
     $this->items[ $index ] = $value;
     return $this;
   }
+
+  public function spliceOut(
+    int $offset,
+    int|null $length = null,
+  ): Collection {
+    return new Collection(
+      array_splice( $this->items, $offset, $length )
+    );
+  }
+
+  public function spliceIn(
+    int $offset,
+    int|null $length = null,
+    Collection|array $replacement
+  ): Collection {
+    array_splice( $this->items, $offset, $length, $replacement );
+    return $this;
+  }  
 }
