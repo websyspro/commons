@@ -485,10 +485,11 @@ class Collection
    */
   public function spliceIn(
     int $offset,
-    int|null $length = null,
     Collection|array $replacement
   ): Collection {
-    array_splice( $this->items, $offset, $length, 
+    array_splice( $this->items, $offset, 
+      $replacement instanceof Collection 
+        ? $replacement->count() : Util::sizeArray( $replacement ), 
       $replacement instanceof Collection 
         ? $replacement->all() : $replacement 
     );
