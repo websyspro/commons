@@ -457,6 +457,14 @@ class Collection
     return $this;
   }
 
+  /**
+   * Removes and returns a portion of the collection.
+   *
+   * @param int      $offset Start position
+   * @param int|null $length Number of items to remove
+   *
+   * @return Collection Collection with removed items
+   */
   public function spliceOut(
     int $offset,
     int|null $length = null,
@@ -466,12 +474,25 @@ class Collection
     );
   }
 
+  /**
+   * Replaces a portion of the collection with new items.
+   *
+   * @param int              $offset      Start position
+   * @param int|null         $length      Number of items to replace
+   * @param Collection|array $replacement Items to insert
+   *
+   * @return Collection Fluent instance
+   */
   public function spliceIn(
     int $offset,
     int|null $length = null,
     Collection|array $replacement
   ): Collection {
-    array_splice( $this->items, $offset, $length, $replacement );
+    array_splice( $this->items, $offset, $length, 
+      $replacement instanceof Collection 
+        ? $replacement->all() : $replacement 
+    );
+    
     return $this;
   }  
 }
