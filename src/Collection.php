@@ -120,12 +120,12 @@ class Collection
   /**
    * Gets an item by index or key.
    *
-   * @param int|string $item Index or key to retrieve
+   * @param mixed $item Index or key to retrieve
    *
    * @return mixed|null Collection containing the item
    */
   public function getOneOrFail(
-    int|string $item
+    mixed $item
   ): mixed {
     return $this->items[ $item ] ?? null;
   }
