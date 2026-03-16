@@ -29,7 +29,7 @@ class Collection
    */  
   public function add(
     mixed $item, 
-    int|string|null $key = null
+    mixed $key = null
   ): Collection {
     if( $key !== null ){
       $this->items[ $key ] = $item;
