@@ -124,7 +124,7 @@ class Collection
    *
    * @return Collection Collection containing the item
    */
-  public function get(
+  public function getOneOrFail(
     int|string $item
   ): mixed {
     return $this->items[ $item ] ?? null;
