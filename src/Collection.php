@@ -122,7 +122,7 @@ class Collection
    *
    * @param int|string $item Index or key to retrieve
    *
-   * @return Collection Collection containing the item
+   * @return Collection|null Collection containing the item
    */
   public function getOneOrFail(
     int|string $item
