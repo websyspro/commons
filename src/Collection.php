@@ -51,7 +51,7 @@ class Collection
     Collection|array $array 
   ): Collection {
     $this->items = $array instanceof Collection
-      ? array_merge( $this->items, $array->all()) 
+      ? array_merge( $this->items, $array->toArray()) 
       : array_merge( $this->items, $array );
 
     return $this;
@@ -433,11 +433,12 @@ class Collection
   }
 
   /**
-   * Returns all items as a raw array.
+   * Returns toArray items as a raw array.
    *
    * @return array
    */  
-  public function all(): array {
+  public function toArray(
+  ): array {
     return $this->items;
   }
 
@@ -490,7 +491,7 @@ class Collection
   ): Collection {
     array_splice( $this->items, $offset, $lenght, 
       $replacement instanceof Collection 
-        ? $replacement->all() 
+        ? $replacement->toArray() 
         : $replacement 
     );
     
