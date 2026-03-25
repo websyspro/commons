@@ -751,10 +751,10 @@ class Util
     string $pattern,
     string $subject
   ): bool {
-    return preg_match(
+    return (bool)preg_match(
       $pattern, 
       $subject
-    ) === 1;
+    );
   }
 
   /**
