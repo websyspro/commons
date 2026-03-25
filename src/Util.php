@@ -757,6 +757,33 @@ class Util
     );
   }
 
+/**
+ * Executes a global regular expression match on the given subject string.
+ *
+ * This method wraps PHP's preg_match_all function, returning all matches
+ * found for the specified pattern.
+ *
+ * @param string $pattern The regular expression pattern to search for.
+ * @param string $subject The input string to perform the search on.
+ *
+ * @return array|null Returns an array of matches. Each element contains:
+ *                    - Full matches at index 0
+ *                    - Captured groups in subsequent indexes
+ *                    Returns null if no matches are found.
+ */
+  public static function matchAll(
+    string $pattern,
+    string $subject
+  ): array|null {
+    preg_match_all(
+      $pattern, 
+      $subject, 
+      $matchs
+    );
+
+    return $matchs;
+  }  
+
   /**
    * Generates a UUID (GUID) version 4.
    *
