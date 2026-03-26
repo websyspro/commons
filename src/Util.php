@@ -778,9 +778,10 @@ class Util
     preg_match_all(
       $pattern, 
       $subject, 
-      $matchs
+      $matchsAll
     );
 
+    [ $matchs ] = $matchsAll;
     return $matchs;
   } 
 
