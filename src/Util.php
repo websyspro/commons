@@ -751,6 +751,10 @@ class Util
     string $pattern,
     string $subject
   ): bool {
+    if( empty( $pattern )){
+      return false;
+    }
+
     return (bool)preg_match(
       $pattern, 
       $subject
