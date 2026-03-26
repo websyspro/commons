@@ -812,7 +812,18 @@ class Util
       $replacement, 
       $subject
     );
-  }  
+  } 
+  
+  public static function split(
+    string $pattern,
+    string $subject
+  ): array|null {
+    return preg_split(
+      $pattern, 
+      $subject, 
+      -1
+    );s
+  }   
 
   /**
    * Generates a UUID (GUID) version 4.
