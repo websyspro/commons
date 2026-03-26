@@ -822,7 +822,7 @@ class Util
       $pattern, 
       $subject, 
       -1
-    );s
+    );
   }   
 
   /**
