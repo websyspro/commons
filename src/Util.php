@@ -825,12 +825,16 @@ class Util
   public static function split(
     string $pattern,
     string $subject
-  ): array|null {
-    return preg_split(
+  ): Collection|null {
+    $sliteds = preg_split(
       $pattern, 
       $subject, 
       -1
     );
+
+    return Util::isArray( $sliteds ) 
+      ? new Collection( $sliteds ) 
+      : new Collection([]);
   }   
 
   /**
