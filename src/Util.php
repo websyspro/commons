@@ -791,7 +791,7 @@ class Util
    * It searches the given subject for matches to the pattern
    * and replaces them with the specified replacement.
    *
-   * @param string $pattern The regular expression pattern to search for.
+   * @param string|array $pattern The regular expression pattern to search for.
    *                        Must be a valid PCRE pattern (including delimiters).
    * @param string $replacement The replacement string or pattern.
    *                            Can include backreferences (e.g., $1, $2).
@@ -801,7 +801,7 @@ class Util
    *               or null if an error occurs.
    */
   public static function replace(
-    string $pattern,
+    string|array $pattern,
     string $replacement,
     string $subject
   ): mixed {
