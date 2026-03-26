@@ -782,6 +782,35 @@ class Util
     );
 
     return $matchs;
+  } 
+
+  /**
+   * Performs a regular expression search and replace.
+   *
+   * This method is a wrapper for PHP's preg_replace function.
+   * It searches the given subject for matches to the pattern
+   * and replaces them with the specified replacement.
+   *
+   * @param string $pattern The regular expression pattern to search for.
+   *                        Must be a valid PCRE pattern (including delimiters).
+   * @param string $replacement The replacement string or pattern.
+   *                            Can include backreferences (e.g., $1, $2).
+   * @param string $subject The input string where replacements will be applied.
+   *
+   * @return mixed Returns the resulting string or array after replacements,
+   *               or null if an error occurs.
+   */
+  public static function replace(
+    string $pattern,
+    string $replacement,
+    string $subject
+  ): mixed {
+    // Execute regex replacement using PHP's native function
+    return preg_replace(
+      $pattern, 
+      $replacement, 
+      $subject
+    );
   }  
 
   /**
