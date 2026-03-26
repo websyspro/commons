@@ -775,6 +775,10 @@ class Util
     string $pattern,
     string $subject
   ): array|null {
+    if( empty( $pattern )){
+      return null;
+    }
+
     preg_match_all(
       $pattern, 
       $subject, 
