@@ -811,8 +811,8 @@ class Util
    */
   public static function replace(
     string|array $pattern,
-    string $replacement,
-    string $subject
+    string $subject,
+    string $replacement = "",
   ): mixed {
     // Execute regex replacement using PHP's native function
     return preg_replace(
