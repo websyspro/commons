@@ -413,8 +413,12 @@ class Collection
    * @return int Index of the matched item or -1 if not found
    */
   public function indexOf(
-    callable $fn
+    callable|string $fn
   ): int {
+    if( Util::isString($fn)){
+      return array_search($fn, $this->items);
+    }
+
     /* Return the index of the first matching item */
     return Util::indexOf(
       $this->items, $fn
