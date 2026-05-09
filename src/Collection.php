@@ -490,15 +490,21 @@ class Collection
    */
   public function spliceIn(
     int $offset,
-    int $lenght,
+    int $length,
     Collection|array $replacement
   ): Collection {
-    array_splice( $this->items, $offset, $lenght, 
+    array_splice( $this->items, $offset, $length, 
       $replacement instanceof Collection 
         ? $replacement->toArray() 
         : $replacement 
     );
     
     return $this;
-  }  
+  } 
+  
+  public function create(
+    Collection|array $items = []
+  ): Collection {
+    return new static( $items );
+  }
 }
