@@ -502,7 +502,7 @@ class Collection
     return $this;
   } 
   
-  public function create(
+  public static function create(
     Collection|array $items = []
   ): Collection {
     return new static( $items );
