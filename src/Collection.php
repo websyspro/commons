@@ -125,9 +125,9 @@ class Collection
    * @return mixed|null Collection containing the item
    */
   public function getOneOrFail(
-    mixed $item
+    mixed $item = null
   ): mixed {
-    return $this->items[ $item ] ?? null;
+    return $this->items[ $item !== null ? $item : 0  ] ?? null;
   }
   
   /**
